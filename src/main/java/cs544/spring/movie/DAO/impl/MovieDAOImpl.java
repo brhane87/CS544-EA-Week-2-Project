@@ -1,49 +1,63 @@
 package cs544.spring.movie.DAO.impl;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import cs544.spring.movie.DAO.MovieDAO;
 import cs544.spring.movie.domain.Gener;
 import cs544.spring.movie.domain.Movie;
 
+@SuppressWarnings("unchecked")
 public class MovieDAOImpl implements MovieDAO {
+	
+	@PersistenceContext
+    protected EntityManager entityManager;
 
 	public void save(Movie movie) {
-		// TODO Auto-generated method stub
+		entityManager.persist( movie );
 
 	}
 
 	public void update(Movie movie) {
-		// TODO Auto-generated method stub
+		entityManager.persist(movie);
 
 	}
 
 	public void delete(Movie movie) {
-		// TODO Auto-generated method stub
+		entityManager.remove( movie );
 
 	}
 
 	public Movie findByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = entityManager.createQuery("select m from movies m  where m.title =:title");
+		return (Movie) query.setParameter("title", title).getSingleResult();
 	}
 
-	public Movie findByGener(Gener gener) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<Movie> findByGener(Gener gener) {
+		Query query = entityManager.createNamedQuery("select m from movies where m.gener =:gener");
+		return (List<Movie>) query.getResultList();
 	}
 
-	public Movie findByRating(String rating) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Movie> findByRating(String rating) {
+		
+		Query query = entityManager.createNamedQuery("select m from movies where m.rating =:rating");
+		return (List<Movie>) query.getResultList();
 	}
 
-	public Movie findByDirector(String director) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Movie> findByDirector(String director) {
+		
+		Query query = entityManager.createNamedQuery("select m from movies where m.rating =:rating");
+		return (List<Movie>) query.getResultList();
 	}
 
-	public Movie findByActor(String actor) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Movie> findByActor(String actor) {
+		
+		Query query = entityManager.createNamedQuery("select m from movies where m.actor =:actor");
+		return (List<Movie>) query.getResultList();
 	}
 
 }

@@ -1,5 +1,7 @@
 package cs544.spring.movie.DAO;
 
+import java.util.List;
+
 import cs544.spring.movie.domain.Gener;
 import cs544.spring.movie.domain.Movie;
 
@@ -13,11 +15,11 @@ public interface MovieDAO {
 
 	Movie findByTitle(String title);
 
-	Movie findByGener(Gener gener);
+	List<Movie> findByGener(Gener gener);
 
-	Movie findByRating(String rating);
+	List<Movie> findByRating(String rating);
 
-	Movie findByDirector(String director);
+	List<Movie> findByDirector(String director);
 
-	Movie findByActor(String actor);
+	List<Movie> findByActor(String actor);
 }

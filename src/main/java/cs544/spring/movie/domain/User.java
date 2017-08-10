@@ -16,7 +16,7 @@ public class User {
 	@Column(name="DOB")
 	Date dateOfBirth;
 	String password;
-	
+
 	List<String> comment=new ArrayList<String>();
 	List<Integer> rating=new ArrayList<Integer>();
 	public String getEmailAddress() {
